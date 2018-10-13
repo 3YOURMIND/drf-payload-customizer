@@ -18,7 +18,7 @@ from setuptools import setup
 
 PROJECT_DIR = path.abspath(path.dirname(__file__))
 
-long_description = open('README.md').read()
+long_description = open(path.join(PROJECT_DIR, 'README.md')).read()
 
 setup(
     name='drf-payload-customizer',
