@@ -1,6 +1,14 @@
 # drf-payload-customizer
 This package allows you to customize your `django-rest-framework` serializer i/o to make modern frontend frameworks happy.
 
+## Requirements
+The `mixin` requires you to have the following dependencies:
+```
+djangorestframework==3.8.2
+inflection==0.3.1
+```
+However, you will require `Django==2.1.2` to run the unit tests. 
+
 ## Use it in your project
 ```
 from drf_payload_customizer.mixins import PayloadCustomizationMixin
