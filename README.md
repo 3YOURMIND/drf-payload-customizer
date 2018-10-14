@@ -1,11 +1,9 @@
+# drf-payload-customizer
 
 [![License](https://img.shields.io/github/license/3yourmind/drf-payload-customizer.svg)](./LICENSE)
 [![Contributing](https://img.shields.io/badge/PR-welcome-green.svg)](https://github.com/3YOURMIND/drf-payload-customizer/pulls)
 [![3yourminD-Careers](https://img.shields.io/badge/3YOURMIND-Hiring-brightgreen.svg)](https://www.3yourmind.com/career)
 [![Stars](https://img.shields.io/github/stars/3YOURMIND/drf-payload-customizer.svg?style=social&label=Stars)](https://github.com/3YOURMIND/drf-payload-customizer/stargazers)
-
-
-# drf-payload-customizer
 
 This package allows you to customize your `django-rest-framework` serializer i/o to make modern frontend frameworks happy.
 
