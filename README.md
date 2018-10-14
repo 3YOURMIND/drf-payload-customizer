@@ -20,6 +20,19 @@ class CustomTestModelSerializer(PayloadCustomizationMixin, ModelSerializer):
         field_mappings = {
             'parama': 'paramA'
         }
+        
+# Now your serializer would output: 
+test_serializer = CustomTestModelSerializer(obj)
+JSONRenderer().render(test_serializer.data)
+> {'paramA': '', 'paramB': None}
+
+# Your serializer also admits input in the same format: 
+content = json.dumps({'paramA': 'testA', 'paramB': 3}).encode()
+stream = BytesIO(content)
+data = JSONParser().parse(stream)
+serializer = CustomTestModelSerializer(data=data)
+self.assertTrue(serializer.is_valid())
+> True
 ```
 
 ## To run tests 
