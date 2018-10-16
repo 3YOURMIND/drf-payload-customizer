@@ -51,11 +51,11 @@ class PayloadCustomizationMixin:
             else:
                 transformed_key = self._do_translate_to_internal_value(key)
 
+            fields_dict[transformed_key] = value
             if isinstance(value, dict):
                 fields_dict[transformed_key] = \
                     self.translate_or_transform_to_internal_value(value)
 
-            fields_dict[transformed_key] = value
         return fields_dict
 
     def to_internal_value(self, camel_cased):
@@ -86,11 +86,11 @@ class PayloadCustomizationMixin:
                 transformed_key = self._do_translate_to_representation(
                     snake_key
                 )
+
+            fields_dict[transformed_key] = value
             if isinstance(value, dict):
                 fields_dict[transformed_key] = \
                     self.translate_or_transform_to_representation(value)
-
-            fields_dict[transformed_key] = value
 
         return fields_dict
 
