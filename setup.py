@@ -28,7 +28,8 @@ setup(
     license='Apache License 2.0',
     author='3YOURMIND',
     author_email='01tonythomas@gmail.com',
-    description='This package allows you to customize your django-rest-framework serializer i/o to make modern frontend frameworks happy.'
+    description='This package allows you to customize your '
+                'django-rest-framework serializer i/o to make modern frontend frameworks happy.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     keywords='django drf rest converter mapping case transformation'

@@ -119,3 +119,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# DRF payload-customizer-mixin-settings
+DRF_PAYLOAD_TRANSLATE_NESTED = True
+DRF_PAYLOAD_NULLIFY_NESTED = True
