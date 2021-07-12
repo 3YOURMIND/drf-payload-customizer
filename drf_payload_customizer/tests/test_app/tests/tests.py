@@ -16,6 +16,11 @@ class TestModel(models.Model):
     param_b = models.IntegerField()
 
 
+class TestNestedModel(models.Model):
+    param_a = models.CharField(max_length=5, blank=True)
+    model = models.ForeignKey(TestModel, on_delete=models.CASCADE)
+
+
 class CustomTestModelSerializer(PayloadConverterMixin, ModelSerializer):
     class Meta:
         model = TestModel
@@ -44,8 +49,19 @@ class NestedTestModelSerializer(PayloadConverterMixin,
         }
 
 
+class NestedModelSerializer(PayloadConverterMixin, serializers.ModelSerializer):
+    model = CustomTestModelSerializer()
+
+    class Meta:
+        model = TestNestedModel
+        fields = (
+            "param_a",
+            "model",
+        )
+
+
 class NestedTestModelSerializerWithNestedTranslation(PayloadConverterMixin,
-                                serializers.ModelSerializer):
+                                                     serializers.ModelSerializer):
     param_c = serializers.SerializerMethodField()
 
     def get_param_c(self, instance):
@@ -109,3 +125,17 @@ class PayloadConverterMixinTest(TestCase):
                         'keyCamel': 'valueCamel'}},
             json.loads(serialized_data)
         )
+
+    def test_wrong_format(self):
+        content = {
+            "paramA": 1,
+            "model": [
+                {
+                    "paramA": None,
+                    "paramB": 123
+                }
+            ]
+        }
+        serializer = NestedModelSerializer(data=content)
+        self.assertRaises(serializers.ValidationError,
+                          serializer.is_valid, raise_exception=True)
