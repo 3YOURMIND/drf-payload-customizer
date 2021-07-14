@@ -1,5 +1,8 @@
+from collections import Mapping
 import re
 
+from rest_framework.settings import api_settings
+from rest_framework.serializers import ValidationError
 from rest_framework.utils.serializer_helpers import ReturnDict
 
 
@@ -23,6 +26,13 @@ class PayloadTransformationMixin:
         return fields_dict
 
     def to_internal_value(self, camel_cased):
+        if not isinstance(camel_cased, Mapping):
+            message = self.error_messages['invalid'].format(
+                datatype=type(camel_cased).__name__
+            )
+            raise ValidationError({
+                api_settings.NON_FIELD_ERRORS_KEY: [message]
+            }, code='invalid')
         return super().to_internal_value(
             self.transform_to_internal_value(camel_cased)
         )
