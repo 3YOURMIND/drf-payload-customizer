@@ -1,4 +1,3 @@
-from collections import Mapping
 import re
 
 from rest_framework.settings import api_settings
@@ -26,7 +25,7 @@ class PayloadTransformationMixin:
         return fields_dict
 
     def to_internal_value(self, camel_cased):
-        if not isinstance(camel_cased, Mapping):
+        if not isinstance(camel_cased, dict):
             message = self.error_messages['invalid'].format(
                 datatype=type(camel_cased).__name__
             )
